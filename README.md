@@ -37,7 +37,7 @@ Con la consola encendida, conéctate a la red WiFi **ESPectro** (contraseña: `g
 ## Compilar y flashear
 
 ```bash
-git clone https://github.com/USUARI/tetris_espectro
+git clone https://github.com/bf-upc/tetris_espectro
 cd tetris_espectro
 pio run --target upload
 ```
