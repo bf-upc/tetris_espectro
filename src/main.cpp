@@ -614,6 +614,13 @@ void drawMenu(int bestScore) {
     tft.print("Prem B per carregar");
     tft.setCursor(SCREEN_W/2 - tft.textWidth("un nou joc")/2, 312);
     tft.print("un nou joc");
+    uint16_t verd = tft.color565(0, 220, 40);
+    tft.setTextSize(1);
+    tft.fillCircle(SCREEN_W/2 - 105, 360, 4, wifiActiu ? verd : tft.color565(80,80,80));
+    tft.setTextColor(wifiActiu ? verd : tft.color565(120,120,120), TFT_BLACK);
+    const char* w = wifiActiu ? "WiFi actiu - ESPectro / 192.168.4.1" : "WiFi inactiu";
+    tft.setCursor(SCREEN_W/2 - 95, 356);
+    tft.print(w);
 }
 
 // ============================================================
@@ -857,6 +864,11 @@ void drawSidebarStatic() {
     tft.setCursor(SX, 428); tft.print("A: girar");
     tft.setCursor(SX, 442); tft.print("Joy btn: cau");
     tft.setCursor(SX, 456); tft.print("B: sortir");
+        uint16_t verd = tft.color565(0, 220, 40);
+    tft.fillCircle(SX + 4, 474, 4, wifiActiu ? verd : tft.color565(80,80,80));
+    tft.setTextColor(wifiActiu ? verd : tft.color565(120,120,120), TFT_BLACK);
+    tft.setCursor(SX + 14, 470);
+    tft.print(wifiActiu ? "WiFi ON" : "WiFi --");
 }
 
 // ── Refresca només els valors que canvien ─────────────────────
