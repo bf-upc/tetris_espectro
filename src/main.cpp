@@ -229,8 +229,9 @@ void registerGame(const char* key) {
         nvs_close(h);
     }
 }
+// Guarda sempre a l'historial; actualitza el màxim i el comptador
 void saveRecord(int score) {
-    registerGame(RECORD_KEY);  //
+    registerGame(RECORD_KEY);
     nvs_handle_t h;
     nvs_flash_init();
     if (nvs_open("records", NVS_READWRITE, &h) == ESP_OK) {
@@ -265,6 +266,13 @@ void saveRecord(int score) {
                 : "[" + String(score) + "]";
         }
         nvs_set_str(h, hkey.c_str(), nova.c_str());
+
+        // ── Comptador de partides jugades (clau <joc>_c) ──
+        String ckey = String(RECORD_KEY) + "_c";
+        int32_t total = 0;
+        nvs_get_i32(h, ckey.c_str(), &total);
+        nvs_set_i32(h, ckey.c_str(), total + 1);
+
         nvs_commit(h);
         nvs_close(h);
     }
